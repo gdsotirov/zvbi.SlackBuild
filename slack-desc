@@ -1,0 +1,11 @@
+zvbi: ZVBI (The Zapping VBI library)
+zvbi:
+zvbi: The Zapping VBI library, in short ZVBI, provides functions to capture
+zvbi: and decode VBI data.  It is written in plain ANSI C with few
+zvbi: dependencies on other tools and libraries, and licensed under LGPL.
+zvbi: The vertical blanking interval (VBI) is an interval in a television
+zvbi: signal that temporarily suspends transmission of the signal for the
+zvbi: electron gun to move back up to the first line of the television
+zvbi: screen to trace the next screen field.
+zvbi:
+zvbi: Packaged by Georgi D. Sotirov <gdsotirov@dir.bg>
