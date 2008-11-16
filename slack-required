@@ -1,0 +1,4 @@
+glibc-solibs >= 2.7
+libpng >= 1.2.27
+libxcb >= 1.0
+zlib >= 1.2.3
