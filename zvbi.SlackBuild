@@ -2,13 +2,14 @@
 #
 # SlackBuild for ZVBI
 # Written by Georgi D. Sotirov <gdsotirov@dir.bg>
+# Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
 
 . ../slack-package.conf
 
 NAME=zvbi
 VERSION=0.2.33
-BUILD=1
+BUILD=${BUILD:-1}
 ARCH=${ARCH:-i486}
 
 TMP=${TMP:-/tmp}
@@ -33,8 +34,7 @@ mkdir -p $PKG
 
 # Extract the source
 cd $TMP
-tar -jxvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
-SRC=$TMP/$NAME-$VERSION
+tar -xvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
 cd $SRC
 fix_source
 
@@ -51,10 +51,8 @@ CXXFLAGS=$SLKCFLAGS \
             --enable-v4l \
             --enable-dvb || exit 2
 
-# Build
+# Build & install
 make -j4 all || exit 3 
-
-# Install
 make DESTDIR=$PKG install || exit 3
 
 # Prepare
@@ -68,18 +66,19 @@ install -m 644 $CWD/slack-desc     $PKG/install/slack-desc
 install -m 644 $CWD/slack-required $PKG/install/slack-required
 install -m 644 $CWD/slack-suggests $PKG/install/slack-suggests
 
-mkdir -p $PKG/usr/src/slackbuilds/$NAME-$VERSION
-install -m 644 $CWD/slack-desc       $PKG/usr/src/slackbuilds/$NAME-$VERSION/slack-desc
-install -m 644 $CWD/slack-required   $PKG/usr/src/slackbuilds/$NAME-$VERSION/slack-required
-install -m 644 $CWD/slack-suggests   $PKG/usr/src/slackbuilds/$NAME-$VERSION/slack-suggests
-install -m 644 $CWD/$NAME.SlackBuild $PKG/usr/src/slackbuilds/$NAME-$VERSION/$NAME.SlackBuild
+SBDIR=$PKG/usr/src/slackbuilds/$NAME-$VERSION
+install -m 755 -d -D $SBDIR
+install -m 644 $CWD/slack-desc       $SBDIR/slack-desc
+install -m 644 $CWD/slack-required   $SBDIR/slack-required
+install -m 644 $CWD/slack-suggests   $SBDIR/slack-suggests
+install -m 644 $CWD/$NAME.SlackBuild $SBDIR/$NAME.SlackBuild
 
-# Pack
+# Assemble
 cd $PKG
 PKGNAME=$NAME-$VERSION-$ARCH-$BUILD$MYIN
-makepkg -l y -c n -p $PKG_DIR/$PKGNAME.tgz
+makepkg -l y -c n -p $PKG_DIR/$PKGNAME.txz
 cd $PKG_DIR
-md5sum $PKGNAME.tgz > $PKGNAME.tgz.md5
+md5sum $PKGNAME.txz > $PKGNAME.txz.md5
 cat $PKG/install/slack-desc > $PKG_DIR/$PKGNAME.txt
 
 # Clean up (optionally)
