@@ -1,4 +1,4 @@
-libX11 >= 1.5.0
-libXau >= 1.0.7
+libX11 >= 1.6.2
+libXau >= 1.0.8
 libXdmcp >= 1.1.1
-libxcb >= 1.8.1
+libxcb >= 1.9.1
