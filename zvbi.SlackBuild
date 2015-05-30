@@ -1,14 +1,31 @@
 #!/bin/sh
 #
-# SlackBuild for ZVBI
-# Written by Georgi D. Sotirov <gdsotirov@dir.bg>
+# Slackware build script for ZVBI
+# Copyright (C) 2008-2015 Georgi D. Sotirov <gdsotirov@dir.bg>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
+# $Id: zvbi.SlackBuild,v 1.4 2015/05/30 07:59:42 gsotirov Exp $
+#
 
-. ../slack-package.conf
+. ../../slack-package.conf
 
 NAME=zvbi
-VERSION=0.2.33
+VERSION=0.2.34
 BUILD=${BUILD:-1}
 ARCH=${ARCH:-i486}
 
@@ -34,7 +51,7 @@ mkdir -p $PKG
 
 # Extract the source
 cd $TMP
-tar -xvf $CWD/$NAME-$VERSION.tar.bz2 || exit 1
+tar -xvf $CWD/$NAME-$VERSION.tar.bz2 || exit 3
 cd $SRC
 fix_source
 
@@ -50,11 +67,11 @@ CXXFLAGS=$SLKCFLAGS \
             --enable-shared=yes \
             --enable-static=no \
             --enable-v4l \
-            --enable-dvb || exit 2
+            --enable-dvb || exit 4
 
 # Build & install
-make -j4 all || exit 3 
-make DESTDIR=$PKG install || exit 3
+make -j4 all || exit 5
+make DESTDIR=$PKG install || exit 6
 
 # Prepare
 bin_perms $PKG
