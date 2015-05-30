@@ -19,13 +19,13 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: zvbi.SlackBuild,v 1.4 2015/05/30 07:59:42 gsotirov Exp $
+# $Id: zvbi.SlackBuild,v 1.5 2015/05/30 08:42:14 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=zvbi
-VERSION=0.2.34
+VERSION=0.2.35
 BUILD=${BUILD:-1}
 ARCH=${ARCH:-i486}
 
