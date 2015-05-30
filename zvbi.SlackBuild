@@ -44,6 +44,7 @@ CXXFLAGS=$SLKCFLAGS \
 ./configure --build=$ARCH-slackware-linux \
             --host=$ARCH-slackware-linux \
             --prefix=/usr \
+            --libdir=/usr/lib${LIBDIRSUFFIX} \
             --sysconfdir=/etc \
             --mandir=/usr/man \
             --enable-shared=yes \
