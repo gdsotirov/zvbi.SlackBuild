@@ -5,12 +5,12 @@
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
 
-. ../slack-package.conf
+. ../../slack-package.conf
 
 NAME=zvbi
 VERSION=0.2.33
-BUILD=${BUILD:-1}
 ARCH=${ARCH:-i486}
+BUILD=${BUILD:-1}
 
 TMP=${TMP:-/tmp}
 CWD=${CWD:-`pwd`}
@@ -44,6 +44,7 @@ CXXFLAGS=$SLKCFLAGS \
 ./configure --build=$ARCH-slackware-linux \
             --host=$ARCH-slackware-linux \
             --prefix=/usr \
+            --libdir=/usr/lib${LIBDIRSUFFIX} \
             --sysconfdir=/etc \
             --mandir=/usr/man \
             --enable-shared=yes \
@@ -56,7 +57,7 @@ make -j4 all || exit 3
 make DESTDIR=$PKG install || exit 3
 
 # Prepare
-bin_perms $PKG
+bin_perms $PKG; sbin_perms $PKG
 ( cd $PKG; strip_bin; strip_lib )
 ( cd $SRC; create_docs $PKG $NAME-$VERSION )
 gzip_man $PKG
