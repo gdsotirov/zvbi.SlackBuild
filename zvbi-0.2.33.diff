@@ -1,0 +1,36 @@
+# Include necesary headers to avoid undefined reference to `S_ISCHR'
+# See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=602880
+diff -urNad zvbi-0.2.33-orig//contrib/ntsc-cc.c zvbi-0.2.33/contrib/ntsc-cc.c
+--- zvbi-0.2.33-orig//contrib/ntsc-cc.c	2007-11-27 19:39:34.000000000 +0200
++++ zvbi-0.2.33/contrib/ntsc-cc.c	2016-08-31 13:03:25.000000000 +0300
+@@ -33,6 +33,7 @@
+ #include <errno.h>
+ #include <locale.h>
+ #include <sys/ioctl.h>
++#include <sys/stat.h>
+ #include <sys/types.h>
+ #include <sys/time.h>
+ #ifdef HAVE_GETOPT_LONG
+diff -urNad zvbi-0.2.33-orig//src/io-dvb.c zvbi-0.2.33/src/io-dvb.c
+--- zvbi-0.2.33-orig//src/io-dvb.c	2008-02-24 16:18:21.000000000 +0200
++++ zvbi-0.2.33/src/io-dvb.c	2016-08-31 13:05:44.000000000 +0300
+@@ -29,6 +29,8 @@
+ #include <errno.h>
+ #include <sys/select.h>
+ #include <sys/ioctl.h>
++#include <sys/stat.h>
++#include <sys/types.h>
+ 
+ #ifndef HAVE_S64_U64
+   /* Linux 2.6.x asm/types.h defines __s64 and __u64 only
+diff -urNad zvbi-0.2.33-orig//src/io-v4l.c zvbi-0.2.33/src/io-v4l.c
+--- zvbi-0.2.33-orig//src/io-v4l.c	2008-02-24 16:17:28.000000000 +0200
++++ zvbi-0.2.33/src/io-v4l.c	2016-08-31 13:06:38.000000000 +0300
+@@ -40,6 +40,7 @@
+ #include <errno.h>
+ #include <unistd.h>		/* read(), dup2(), getuid() */
+ #include <assert.h>
++#include <sys/stat.h>		/* S_ISCHR */
+ #include <sys/time.h>		/* timeval */
+ #include <sys/types.h>		/* fd_set, uid_t */
+ #include <sys/ioctl.h>		/* for (_)videodev.h */
