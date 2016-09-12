@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Slackware build script for ZVBI
-# Copyright (C) 2008-2015 Georgi D. Sotirov <gdsotirov@dir.bg>
+# Copyright (C) 2008-2016 Georgi D. Sotirov <gdsotirov@dir.bg>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,15 +19,15 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: zvbi.SlackBuild,v 1.5 2015/05/30 08:42:14 gsotirov Exp $
+# $Id: zvbi.SlackBuild,v 1.6 2016/09/12 12:36:42 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=zvbi
 VERSION=0.2.35
+ARCH=${ARCH:-i586}
 BUILD=${BUILD:-1}
-ARCH=${ARCH:-i486}
 
 TMP=${TMP:-/tmp}
 CWD=${CWD:-`pwd`}
